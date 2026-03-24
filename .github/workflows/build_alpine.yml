@@ -26,3 +26,9 @@ jobs:
           name: v86
           path: |
             images/*
+
+      - name: Release to GitHub
+        uses: ncipollo/release-action@v1
+        with:
+          body: ${{ github.event.head_commit.message }}
+          artifacts: "images/*"
