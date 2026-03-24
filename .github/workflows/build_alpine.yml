@@ -30,5 +30,6 @@ jobs:
       - name: Release to GitHub
         uses: ncipollo/release-action@v1
         with:
+          tag: latest
           body: ${{ github.event.head_commit.message }}
           artifacts: "images/*"
