@@ -19,3 +19,10 @@ jobs:
 
       - name: Run build script
         run: (cd tools/docker/alpine && bash ./build.sh)
+
+      - name: Upload the artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: v86
+          path: |
+            images/*
