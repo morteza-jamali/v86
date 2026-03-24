@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+  build_alpine_image:
+    name: build_alpine_image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Docker CE
+        uses: docker/setup-docker-action@v5.0.0
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: tree:0
+
+      - name: Run build script
+        run: (cd tools/docker/alpine && bash ./build.sh)
