@@ -20,16 +20,19 @@ jobs:
       - name: Run build script
         run: (cd tools/docker/alpine && bash ./build.sh)
 
+      - name: Run eslint
+        run: tar -czvf images.tar.gz images/
+
       - name: Upload the artifact
         uses: actions/upload-artifact@v4
         with:
           name: v86
           path: |
-            images/*
+            images.tar.gz
 
       - name: Release to GitHub
         uses: ncipollo/release-action@v1
         with:
           tag: latest
           body: ${{ github.event.head_commit.message }}
-          artifacts: "images/*"
+          artifacts: "images.tar.gz"
